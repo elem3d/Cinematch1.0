@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CineMatch</title>
+
+    <link rel="stylesheet" href="./styles/main.css">
 </head>
-<body>
+<body id="catalogo-pg">
+    <header>
+        <span id="nome-usuario"></span>
+        <h3>Bem vind@ ao CineMatch!</h3>
+    </header>
     
+    <section class="catalogo-container">
+        <div class="busca-container">
+            <label for="busca" class="sr-only">Barra de busca</label>
+            <input type="text" name="busca" id="busca" placeholder="Procure por uma série específica">
+
+            <select name="filter" id="filter">
+                <option value="" disabled selected hidden>Filtro</option>
+                <option value="recomendados">Recomendados</option>
+                <option value="nao-explorados">Não Explorados</option>
+                <option value="todos">Todos</option>
+            </select>
+
+            <button type="submit" id="busca-btn">Buscar</button>
+        </div>
+        <ul class="cards-container">
+            
+        </ul>
+    </section>
+
 </body>
 </html>

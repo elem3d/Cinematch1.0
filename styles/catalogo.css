@@ -1,0 +1,148 @@
+.sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+#catalogo-pg{
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-claro);
+}
+
+header {
+    padding: 10px;
+    max-height: 10vh;
+    background-color: var(--cor-secundaria);
+    display: flex;
+    justify-content: center;
+}
+
+header h3 {
+    font-size: 1.5rem;
+    font-weight: var(--peso-medio);
+}
+
+.catalogo-container{
+    margin: 7% auto;
+    padding: 20px 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.busca-container{
+    margin: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px;
+}
+
+.busca-container input, .busca-container select, .busca-container button{
+        margin: 5px;
+        padding: 5px;
+}
+
+select{
+    border-radius: 6px;
+    border: none;
+}
+
+option{
+    margin: 1px;
+    border-radius: 6px;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-claro);
+    border: none;
+}
+
+#busca-btn{
+    padding: 5px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-claro);
+    border: none;
+    border-radius: 6px;
+    font-size: var(--normal);
+    font-weight: var(--peso-medio);
+    cursor: pointer;
+}
+
+.cards-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    gap: 20px;
+    width: 100%;
+}
+.card{
+    border: none;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 30%;
+    margin: 1%;
+    background-color: #ffffff;
+    color: var(--cor-primaria);
+    height: 400px;
+    width: 280px;
+    flex-grow: 1;
+    max-width: 320px;
+}
+
+.card img{
+    display:block;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 50%;
+    object-fit: cover; 
+    object-position: center;
+}
+.titulo{
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.etiqueta{
+    padding: 6px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto-claro);
+    border: none;
+    border-radius: 20px;
+    font-size: var(--pequena);
+    font-weight: var(--peso-normal);
+}
+
+.sinopse{
+    margin: 3px 15px 5px;
+    font-size: var(--pequena);
+    text-align: justify;
+}
+
+@media (min-width: 768px){
+    header{
+        min-height: 10vh;
+        max-height: 50vh;
+        padding: 20px;
+    }
+
+    .busca-container{
+        align-items: center;
+        
+    }
+
+}
