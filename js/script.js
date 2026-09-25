@@ -1,12 +1,13 @@
 const formulario = document.getElementById("formulario");
 
+
 formulario.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
     const nome = document.getElementById("nome").value;
     const idade = document.getElementById("idade").value;
-    const genero = document.getElementById("genero").value;
+    //const generos = document.getElementById("genero").value;
 
     const usuario = {
         nome: nome,
