@@ -48,3 +48,39 @@
 </body>
 
 </html>
+<h2>Catálogo de Séries</h2>
+
+<!-- Busca -->
+<input 
+    type="search" 
+    id="busca"
+    placeholder="Buscar série..."
+>
+
+<!-- Filtro -->
+<label for="filtroGenero">Filtrar por gênero:</label>
+
+<select id="filtroGenero">
+    <option value="todos">Todos</option>
+    <option value="Drama">Drama</option>
+    <option value="Comédia">Comédia</option>
+    <option value="Ação">Ação</option>
+    <option value="Terror">Terror</option>
+    <option value="Romance">Romance</option>
+</select>
+
+<!-- Ordenação -->
+<label for="ordenacao">Ordenar por:</label>
+
+<select id="ordenacao">
+    <option value="padrao">Padrão</option>
+    <option value="az">Nome: A-Z</option>
+    <option value="za">Nome: Z-A</option>
+    <option value="notaMaior">Nota: maior para menor</option>
+    <option value="notaMenor">Nota: menor para maior</option>
+</select>
+
+<!-- Catálogo -->
+<section id="catalogo">
+    <!-- As séries da API aparecerão aqui -->
+</section>
