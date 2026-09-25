@@ -4,3 +4,21 @@
     padding: 0px;
     box-sizing: border-box;
 }
+
+:root {
+/*Cores*/
+    --cor-fundo: #07031a;         
+    --cor-cartao: #99cfff58;                
+    --cor-texto-claro: #ffffff;   
+    --cor-borda: #324099;         
+    --cor-primaria: #150639;      
+    --cor-secundaria: #1f2c90;
+/* Fontes*/
+    --grande: 3rem;
+    --media: 22px;
+    --padrao: 18px;
+    --pequena: 12px;
+    --peso-normal: 400;           
+    --peso-medio: 600;        
+    --peso-negrito: 700;          
+}
