@@ -10,6 +10,10 @@
     border-width: 0;
 }
 
+.hide{
+    display: none;
+}
+
 #catalogo-pg{
     background-color: var(--cor-fundo);
     color: var(--cor-texto-claro);
