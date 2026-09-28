@@ -55,3 +55,10 @@ export function renderizarCatalogo(catalogo){
 
 };
 
+export const recomendados = catalogoCompleto.map((serie) =>{
+
+})
+
+export const naoExplorados = catalogoCompleto.map((serie) => {
+    
+})

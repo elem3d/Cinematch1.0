@@ -1,4 +1,7 @@
 import { renderizarCatalogo } from "./catalogo";
+import { catalogoCompleto } from "./api";
+import { recomendados } from "./catalogo";
+import { naoExplorados } from "./catalogo";
 
 const formulario = document.getElementById("formulario");
 const generosContainer = document.querySelector(".generos-container")
@@ -47,7 +50,14 @@ formulario.addEventListener("submit", function(event) {
 
     window.location.href = "../catalogo.html";
     
-    const catalogo = {}
+    renderizarCatalogo(catalogoCompleto);
+
+    const filtro = document.getElementById('filter');
+    const buscaBtn = document.getElementById('busca-btn')
     
-    renderizarCatalogo(catalogo, usuario);
+    const handleBusca = ((filter) => {
+        
+    })
+    
+    buscaBtn.addEventListener("submit", handleBusca(filtro))
 });
