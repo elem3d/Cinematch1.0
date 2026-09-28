@@ -1,6 +1,7 @@
-import { catalogoCompleto } from "./api"
+import { catalogoCompleto } from "./api.js"
 
 export function renderizarCatalogo(catalogo){
+    console.log ("renderizando catálogo ");
     catalogo.forEach(serie => {
         const container = document.querySelector(".cards-container")
         const card = document.createElement('li');
@@ -60,5 +61,5 @@ export const recomendados = catalogoCompleto.map((serie) =>{
 })
 
 export const naoExplorados = catalogoCompleto.map((serie) => {
-    
+
 })
