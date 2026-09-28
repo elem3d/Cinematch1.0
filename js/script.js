@@ -1,3 +1,5 @@
+import { renderizarCatalogo } from "./catalogo";
+
 const formulario = document.getElementById("formulario");
 const generosContainer = document.querySelector(".generos-container")
 const generosList = document.getElementsByName("generos")
@@ -45,5 +47,7 @@ formulario.addEventListener("submit", function(event) {
 
     window.location.href = "../catalogo.html";
     
-    renderizarCatalogo();
+    const catalogo = {}
+    
+    renderizarCatalogo(catalogo, usuario);
 });
