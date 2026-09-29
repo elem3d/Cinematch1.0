@@ -1,4 +1,4 @@
-class Serie {
+export class Serie {
   id = "";
   titulo = "";
   generos = "";
@@ -12,7 +12,7 @@ class Serie {
     ((this.id = id),
       (this.titulo = titulo),
       (this.generos = generos),
-      (this.duracaoMin = duracaoEp),
+      (this.duracaoEp = duracaoEp),
       (this.status = status),
       (this.img = img),
       (this.sinopse = sinopse));
@@ -44,21 +44,8 @@ class Serie {
   }
 }
 
-const catalogoApi = [];
-
-export const catalogoCompleto = catalogoApi.map((serie) => {
-  return new Serie(
-    serie.id,
-    serie.name,
-    serie.genres,
-    serie.runtime,
-    serie.status,
-    serie.image.medium,
-    serie.summary,
-  );
-});
-async function buscarCatalago() {
-  const url = "https://api.tvmaze.com/shows?page=0";
+export async function buscarCatalago() {
+  const url = "https://api.tvmaze.com/shows";
 
   try {
     const response = await fetch(url);
@@ -68,6 +55,7 @@ async function buscarCatalago() {
     }
 
     const data = await response.json();
+
     const catalogoCompleto = data.map((serie) => {
       return new Serie(
         serie.id,
@@ -79,9 +67,10 @@ async function buscarCatalago() {
         serie.summary,
       );
     });
-    console.log(catalogoCompleto);
+
+    return catalogoCompleto;
+
   } catch (error) {
     console.error("Erro ao buscar dados:", error);
   }
 }
-

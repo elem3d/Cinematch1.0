@@ -135,13 +135,13 @@ option{
     color: var(--cor-texto-claro);
     border: none;
     border-radius: 20px;
-    font-size: var(--mini);
+    font-size: var(--pequena);
     font-weight: var(--peso-normal);
 }
 
 .sinopse{
     margin: 3px 15px 5px;
-    font-size: var(--pequena);
+    font-size: var(--mini);
     text-align: justify;
 }
 
