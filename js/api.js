@@ -57,3 +57,31 @@ export const catalogoCompleto = catalogoApi.map((serie) => {
     serie.summary,
   );
 });
+async function buscarCatalago() {
+  const url = "https://api.tvmaze.com/shows?page=0";
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Erro: ${response.status}");
+    }
+
+    const data = await response.json();
+    const catalogoCompleto = data.map((serie) => {
+      return new Serie(
+        serie.id,
+        serie.name,
+        serie.genres,
+        serie.runtime,
+        serie.status,
+        serie.image.medium,
+        serie.summary,
+      );
+    });
+    console.log(catalogoCompleto);
+  } catch (error) {
+    console.error("Erro ao buscar dados:", error);
+  }
+}
+
