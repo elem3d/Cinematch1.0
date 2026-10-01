@@ -1,9 +1,13 @@
-import { buscarCatalago, Serie } from "./api.js";
+import { buscarCatalago } from "./api.js";
 const msgCarregamento = document.querySelector(".loading-msg");
+const perfil = JSON.parse(localStorage.getItem("usuario"));
 
-const renderizarCatalogo = (buscaAPI) => {
-  buscaAPI.forEach((serie) => {
-    const container = document.querySelector(".cards-container");
+const renderizarCatalogo = (catalogo) => {
+  const container = document.querySelector(".cards-container");
+
+  container.innerHTML = "";
+
+  catalogo.forEach((serie) => {
     const card = document.createElement("li");
     const img = document.createElement("img");
     const titulo = document.createElement("h3");
@@ -55,23 +59,65 @@ const renderizarCatalogo = (buscaAPI) => {
   });
 };
 
-async function carregarCatalogo() {
+async function carregarCatalogo(filtro) {
   try {
     const catalogoCompleto = await buscarCatalago();
     if (catalogoCompleto) {
+      const catalogoCompatibilidade = catalogoCompleto.map((serie) => {
+        const generosFav = perfil.generos;
+        serie.compatibilidade = serie.calcularAfinidade(generosFav);
+        console.log(serie.compatibilidade)
+        return serie;
+      });
+
+      const catalogoRecomendado = catalogoCompatibilidade
+        .filter((s) => s.compatibilidade >= 50)
+        .sort((a, b) => b.compatibilidade - a.compatibilidade);
+
+        console.log(catalogoRecomendado)
+
+      const catalogoNaoExplorado = catalogoCompatibilidade
+        .filter((s) => s.compatibilidade < 50)
+        .sort((a, b) => b.compatibilidade - a.compatibilidade);
+
+      if (filtro == "todos") {
         msgCarregamento.remove();
-      renderizarCatalogo(catalogoCompleto);
+        renderizarCatalogo(catalogoCompleto);
+      } else if (filtro == "recomendados") {
+        msgCarregamento.remove();
+        renderizarCatalogo(catalogoRecomendado);
+      } else if (filtro == "nao-explorados") {
+        msgCarregamento.remove();
+        renderizarCatalogo(catalogoNaoExplorado);
+      } else {
+        msgCarregamento.textContent = "Série não encontrada";
+      }
+    } else {
+      throw new Error();
     }
-  } catch (error) {
-    console.error("Erro ao iniciar aplicação:", error);
+  } catch (erro) {
+    console.error("Erro ao carregar catálogo:", erro);
   }
 }
 
-carregarCatalogo();
+let filterValue = "todos";
+
+carregarCatalogo(filterValue);
 
 const filtro = document.getElementById("filter");
-const buscaBtn = document.getElementById("busca-btn");
+const buscaInput = document.getElementById("busca");
+const busca = document.getElementById("busca-form");
 
-const handleBusca = (filter) => {};
+const handleBusca = (filter, input) => {
+  const sérieProcurada = input.value;
+  console.log(filter);
+  return filter;
+};
 
-buscaBtn.addEventListener("submit", handleBusca(filtro));
+busca.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  console.log(filtro.value);
+
+  carregarCatalogo(handleBusca(filtro.value, buscaInput));
+});

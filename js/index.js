@@ -1,3 +1,5 @@
+localStorage.clear();
+
 const formulario = document.getElementById("formulario");
 const generosContainer = document.querySelector(".generos-container");
 // const generosList = document.getElementsByName("generos");
@@ -33,12 +35,12 @@ formulario.addEventListener("change", (evento) => {
 
     if (generosMarcados.length > 5) {
       evento.target.checked = false;
-      const criaMsgErro = (() =>{
+      const criaMsgErro = () => {
         const mensagemErro = document.createElement("p");
         mensagemErro.textContent = "Selecione apenas 5 gêneros";
         mensagemErro.classList.add("gen-erro-msg");
         generosContainer.appendChild(mensagemErro);
-      });
+      };
 
       criaMsgErro();
 
@@ -46,12 +48,9 @@ formulario.addEventListener("change", (evento) => {
         const erroMsgElement = document.querySelector(".gen-erro-msg");
         erroMsgElement.remove();
       }, 5000);
-
     }
   }
 });
-
-
 
 formulario.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -81,5 +80,4 @@ formulario.addEventListener("submit", function (event) {
   localStorage.setItem("usuario", JSON.stringify(usuario));
 
   window.location.href = "../catalogo.html";
-
 });

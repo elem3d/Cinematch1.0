@@ -18,7 +18,7 @@ export class Serie {
       (this.sinopse = sinopse));
   }
 
-  calcularAfinidade(genFav) {
+    calcularAfinidade(genFav) {
     const genComum = genFav.reduce((acc, gen) => {
       if (
         this.generos.some((g) => {
@@ -33,13 +33,13 @@ export class Serie {
 
     const compat = (genComum / this.generos.length) * 100;
 
-    /* if(compat >= 80){
+     /*if(compat >= 80){
             return "Alta Afinidade"
         }else if(compat < 80 && compat >=50){
             return "Média Afinidade"
         }else{
             return "Baixa Afinidade"
-        }; */
+        };*/
     return compat;
   }
 }
@@ -69,7 +69,6 @@ export async function buscarCatalago() {
     });
 
     return catalogoCompleto;
-
   } catch (error) {
     console.error("Erro ao buscar dados:", error);
   }
