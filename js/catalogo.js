@@ -59,36 +59,69 @@ const renderizarCatalogo = (catalogo) => {
   });
 };
 
-async function carregarCatalogo(filtro) {
+const buscarNoCatalogo = (catalogo, busca) => {
+  //Primeiro if verifica se o valor da busca existe
+  if (busca) {
+    //Se existe vai buscar no catálogo e retornar um novo array de catálogo filtrado
+    const buscaFormatada = busca.toLowerCase();
+    return catalogo.filter((serie) => {
+      return serie.titulo.toLowerCase().includes(buscaFormatada);
+    });
+  } else {
+    //Se não houve busca, retorna o próprio catálogo da entrada
+    return catalogo;
+  }
+};
+
+async function carregarCatalogo(filtro, busca) {
   try {
     const catalogoCompleto = await buscarCatalago();
     if (catalogoCompleto) {
       const catalogoCompatibilidade = catalogoCompleto.map((serie) => {
         const generosFav = perfil.generos;
         serie.compatibilidade = serie.calcularAfinidade(generosFav);
-        console.log(serie.compatibilidade)
         return serie;
       });
 
       const catalogoRecomendado = catalogoCompatibilidade
         .filter((s) => s.compatibilidade >= 50)
-        .sort((a, b) => b.compatibilidade - a.compatibilidade);
-
-        console.log(catalogoRecomendado)
+        .toSorted((a, b) => b.compatibilidade - a.compatibilidade);
 
       const catalogoNaoExplorado = catalogoCompatibilidade
         .filter((s) => s.compatibilidade < 50)
-        .sort((a, b) => b.compatibilidade - a.compatibilidade);
+        .toSorted((a, b) => b.compatibilidade - a.compatibilidade);
+
+      let paraImprimir = [];
 
       if (filtro == "todos") {
-        msgCarregamento.remove();
-        renderizarCatalogo(catalogoCompleto);
+        paraImprimir = buscarNoCatalogo(catalogoCompleto, busca);
+
+        if (paraImprimir.length > 0) {
+          msgCarregamento.remove();
+          renderizarCatalogo(
+            paraImprimir.toSorted((a, b) => a.titulo.localeCompare(b.titulo)),
+          );
+        } else {
+          msgCarregamento.textContent = "Série não encontrada";
+        }
       } else if (filtro == "recomendados") {
-        msgCarregamento.remove();
-        renderizarCatalogo(catalogoRecomendado);
+        paraImprimir = buscarNoCatalogo(catalogoRecomendado, busca);
+
+        if (paraImprimir.length > 0) {
+          msgCarregamento.remove();
+          renderizarCatalogo(paraImprimir);
+        } else {
+          msgCarregamento.textContent = "Série não encontrada";
+        }
       } else if (filtro == "nao-explorados") {
-        msgCarregamento.remove();
-        renderizarCatalogo(catalogoNaoExplorado);
+        paraImprimir = buscarNoCatalogo(catalogoNaoExplorado, busca);
+
+        if (paraImprimir.length > 0) {
+          msgCarregamento.remove();
+          renderizarCatalogo(paraImprimir);
+        } else {
+          msgCarregamento.textContent = "Série não encontrada";
+        }
       } else {
         msgCarregamento.textContent = "Série não encontrada";
       }
@@ -108,16 +141,8 @@ const filtro = document.getElementById("filter");
 const buscaInput = document.getElementById("busca");
 const busca = document.getElementById("busca-form");
 
-const handleBusca = (filter, input) => {
-  const sérieProcurada = input.value;
-  console.log(filter);
-  return filter;
-};
-
 busca.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  console.log(filtro.value);
-
-  carregarCatalogo(handleBusca(filtro.value, buscaInput));
+  carregarCatalogo(filtro.value, buscaInput.value);
 });
