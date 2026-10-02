@@ -79,5 +79,5 @@ formulario.addEventListener("submit", function (event) {
 
   localStorage.setItem("usuario", JSON.stringify(usuario));
 
-  window.location.href = "../catalogo.html";
+  window.location.href = "./catalogo.html";
 });
