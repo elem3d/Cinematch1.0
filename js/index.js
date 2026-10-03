@@ -26,6 +26,7 @@ let generosMarcados = [];
 // Lógica dinâmica para verificação de quantos generos estão selecionados
 
 formulario.addEventListener("change", (evento) => {
+    console.log("Evento de mudança detectado"); 
   if (evento.target.matches("input[name=generos]")) {
     generosMarcados = Array.from(
       formulario.querySelectorAll('input[name="generos"]:checked'),
