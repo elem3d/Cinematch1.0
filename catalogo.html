@@ -14,25 +14,26 @@
         <span id="nome-usuario"></span>
         <h3>Bem vind@ ao CineMatch!</h3>
     </header>
-
-    <section class="catalogo-container">
-        <form class="busca-container" id="busca-form">
-            <label for="busca" class="sr-only">Barra de busca</label>
-            <input type="text" name="busca" id="busca" placeholder="Procure por uma série específica">
-
-            <select name="filter" id="filter">
-                <option value="" disabled selected hidden>Filtro</option>
-                <option value="recomendados">Recomendados</option>
-                <option value="nao-explorados">Não Explorados</option>
-                <option value="todos">Todos</option>
-            </select>
-
-            <button type="submit" id="busca-btn">Buscar</button>
-        </form>
-        <ul class="cards-container">
-            <p class="loading-msg">Carregando Catálogo...</p>
-        </ul>
-    </section>
+    <main>
+         <section class="catalogo-container">
+            <form class="busca-container" id="busca-form">
+                <label for="busca" class="sr-only">Barra de busca</label>
+                <input type="text" name="busca" id="busca" placeholder="Procure por uma série específica">
+    
+                <select name="filter" id="filter">
+                    <option value="" disabled selected hidden>Filtro</option>
+                    <option value="recomendados">Recomendados</option>
+                    <option value="nao-explorados">Não Explorados</option>
+                    <option value="todos">Todos</option>
+                </select>
+    
+                <button type="submit" id="busca-btn">Buscar</button>
+            </form>
+            <ul class="cards-container">
+                <p class="loading-msg">Carregando Catálogo...</p>
+            </ul>
+        </section>    
+    </main>
 </body>
 <script type="module" src="./js/catalogo.js"></script>
 
